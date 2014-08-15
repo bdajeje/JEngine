@@ -5,26 +5,40 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 
-#include "graphics/utils/movable.hpp"
-#include "graphics/utils/sizable.hpp"
-
 namespace graphics {
 
+/* Helper struct to hold object properties */
+struct ObjectProperties
+{
+  /* Constructor
+   * \param x      position to set
+   * \param y      position to set
+   * \param width  to set
+   * \param height to set
+   */
+  ObjectProperties(uint x, uint y, uint width, uint height)
+    : x{x}
+    , y{y}
+    , width{width}
+    , height{height}
+  {}
+
+  uint x;
+  uint y;
+  uint width;
+  uint height;
+};
+
 /* Pure base class for all graphical objects */
-class Object : public utils::Sizable, public utils::Movable
+class Object
 {
   public:
 
-    /* Default constructor */
-    Object() = default;
+    /* Constructor */
+    Object() {}
 
-    /* Constructor with positions
-     * \param x      position to set
-     * \param y      position to set
-     * \param width  to set
-     * \param height to set
-     */
-    Object(uint x, uint y, uint width, uint height);
+    /* Destructor */
+    virtual ~Object() = default;
 
     /* Set this element as visible */
     void show() { m_shown = true; }
@@ -38,7 +52,7 @@ class Object : public utils::Sizable, public utils::Movable
   private:
 
     /* Is this element visible */
-    bool m_shown;
+    bool m_shown {true};
 };
 
 } // namespace graphics

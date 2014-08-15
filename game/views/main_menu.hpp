@@ -15,10 +15,13 @@ class MainMenu final : public graphics::View
     /* Constructor */
     MainMenu();
 
+    /* Destructor */
+    ~MainMenu();
+
   private:
 
     /* Button to exit the application */
-    graphics::Button m_button_quit;
+    graphics::Button* m_button_quit;
 };
 
 } // views

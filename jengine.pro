@@ -7,10 +7,15 @@ SOURCES += main.cpp \
     graphics/window.cpp \
     graphics/object.cpp \
     graphics/view.cpp \
-    graphics/utils/sizable.cpp \
     game/views/main_menu.cpp \
-    graphics/utils/movable.cpp \
-    graphics/objects/button.cpp
+    graphics/objects/button.cpp \
+    graphics/utils/container.cpp \
+    managers/font_manager.cpp \
+    graphics/objects/text.cpp \
+    graphics/objects/rectangle.cpp \
+    graphics/utils/sizable.cpp \
+    utils/directory.cpp \
+    managers/configuration_manager.cpp
 
 CONFIG += c++11
 
@@ -21,8 +26,14 @@ HEADERS += \
     defines.hpp \
     graphics/object.hpp \
     graphics/view.hpp \
-    graphics/utils/sizable.hpp \
     game/views/main_menu.hpp \
-    graphics/utils/movable.hpp \
     graphics/objects/button.hpp \
-    graphics/window.hpp
+    graphics/window.hpp \
+    graphics/utils/properties.hpp \
+    graphics/utils/container.hpp \
+    managers/font_manager.hpp \
+    graphics/objects/text.hpp \
+    graphics/objects/rectangle.hpp \
+    graphics/utils/sizable.hpp \
+    utils/directory.hpp \
+    managers/configuration_manager.hpp
