@@ -2,6 +2,7 @@
 #define FONT_MANAGER_HPP
 
 #include <map>
+#include <memory>
 #include <string>
 
 #include <SFML/Graphics/Font.hpp>
@@ -15,8 +16,13 @@ class FontManager final
 {
   public:
 
+    /* Get the unique instance
+     * \param font_directory where to find the fonts
+     */
+    static void init(const std::string& font_directory);
+
     /* Get the unique instance */
-    static FontManager& instance();
+    static FontManager& instance() { return *s_instance; }
 
     /* Get a font
      * \param font to get
@@ -42,6 +48,8 @@ class FontManager final
     std::string getFontFilePath(Font font_name) const;
 
   private:
+
+    static std::unique_ptr<FontManager> s_instance;
 
     /* Directory when to find fonts */
     std::string m_directory;

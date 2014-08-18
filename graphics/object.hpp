@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 
+#include "utils/logging/easylogging++.h"
+
 namespace graphics {
 
 /* Helper struct to hold object properties */

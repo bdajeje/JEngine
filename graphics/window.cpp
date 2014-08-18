@@ -3,6 +3,7 @@
 #include "SFML/Window/Event.hpp"
 
 #include "graphics/view.hpp"
+#include "utils/logging/easylogging++.h"
 
 namespace graphics {
 
@@ -20,7 +21,7 @@ bool Window::run()
       if(event.type == sf::Event::Closed)
         close();
     }
-
+LOG(DEBUG) << "test";
     updateDisplay();
   }
 

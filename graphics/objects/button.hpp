@@ -49,11 +49,6 @@ class Button : public Object,
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default) const;
 
-    /* Update the position of the button
-     * \note Take care of border sizes
-     */
-    void updatePosition(float x, float y);
-
   private:
 
     /* Text inside the button */

@@ -7,7 +7,9 @@ Button::Button( const std::string& text, const TextProperties& text_properties,
   : utils::Container{ container_properties }
   , m_text( text, text_properties )
   , m_background{ object_properties.width, object_properties.height, sf::Color::White, sf::Color::Black }
-{}
+{
+  LOG(DEBUG) << "creating button";
+}
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -25,15 +27,10 @@ void Button::setBorderSize(uint size)
 
   // Update position after updating border size
   const auto& position = m_background.getPosition();
-  updatePosition( position.x, position.y );
+  setPosition( position.x, position.y );
 }
 
 void Button::setPosition(float x, float y)
-{
-  updatePosition(x, y);
-}
-
-void Button::updatePosition(float x, float y)
 {
   const auto border_size = m_background.getOutlineThickness();
   const float new_x = x + border_size;
