@@ -31,7 +31,6 @@ const std::string& ConfigurationManager::applicationDirectory()
 const std::string& ConfigurationManager::fontDirectory()
 {
   static const std::string result = applicationDirectory() + "fonts/";
-  LOG(DEBUG) << result;
   return result;
 }
 

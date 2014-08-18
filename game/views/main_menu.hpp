@@ -20,6 +20,12 @@ class MainMenu final : public graphics::View
 
   private:
 
+    /* Button play */
+    graphics::Button* m_button_play;
+
+    /* Button settings */
+    graphics::Button* m_button_settings;
+
     /* Button to exit the application */
     graphics::Button* m_button_quit;
 };

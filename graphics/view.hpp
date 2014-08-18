@@ -25,7 +25,7 @@ class View : public utils::Sizable
     View( uint width, uint height, const std::string& name );
 
     /* Destrutor */
-    virtual ~View() = default;
+    virtual ~View();
 
     /* Draw the view
      * \param render_target where to draw the view

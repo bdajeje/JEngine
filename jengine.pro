@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     graphics/objects/rectangle.cpp \
     graphics/utils/sizable.cpp \
     utils/directory.cpp \
-    managers/configuration_manager.cpp
+    managers/configuration_manager.cpp \
+    graphics/utils/vlayout.cpp
 
 CONFIG += c++11
 
@@ -36,4 +37,5 @@ HEADERS += \
     graphics/objects/rectangle.hpp \
     graphics/utils/sizable.hpp \
     utils/directory.hpp \
-    managers/configuration_manager.hpp
+    managers/configuration_manager.hpp \
+    graphics/utils/vlayout.hpp

@@ -34,12 +34,6 @@ class Button : public Object,
     // Set background color
     virtual void setBackgroundColor(const sf::Color& color) { m_background.setFillColor( color ); }
 
-    // Set border color
-    virtual void setBorderColor(const sf::Color& color) { m_background.setOutlineColor( color ); }
-
-    // Set border size
-    virtual void setBorderSize(uint size);
-
     // Set position of the button
     // Note: Buttons have to take care of their borders.
     //       Their positions are taking into account the size of the borders

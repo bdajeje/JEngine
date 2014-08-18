@@ -24,6 +24,9 @@ class Text : public Object,
   public:
 
     Text( const std::string& text, const TextProperties& properties );
+
+    /* Get size */
+    sf::Vector2f getSize() const;
 };
 
 } // graphics

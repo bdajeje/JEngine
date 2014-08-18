@@ -2,6 +2,8 @@
 #define CONTAINER_HPP
 
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/System/Vector2.hpp>
 
 #include "graphics/utils/properties.hpp"
 
@@ -35,6 +37,16 @@ class Container
 
     /* Destructor */
     ~Container() = default;
+
+  protected:
+
+    /* Get relative positions of a child depending on container position rules
+     * \param parent_positions position of the parent element
+     * \param parent_size      size  of the parent element
+     * \param child_size       size of the child element
+     * \return new positions for child element in order to respect container position rules
+     */
+    sf::Vector2f getChildPosition(const sf::Vector2f& parent_positions, const sf::Vector2f& parent_size, const sf::Vector2f& child_size ) const;
 
   protected:
 

@@ -25,7 +25,7 @@ FontManager::FontManager(const std::string& font_directory)
 const sf::Font& FontManager::getFont(Font font_name)
 {
   FontManager& instance = FontManager::instance();
-LOG(DEBUG) << "nani=> " << &instance;
+
   auto iterator = instance.m_fonts.find(font_name);
   if(iterator == instance.m_fonts.end() &&
      !instance.loadFont(font_name))
@@ -33,7 +33,7 @@ LOG(DEBUG) << "nani=> " << &instance;
     LOG(ERROR) << "Can't load font " << font_name;
     return instance.m_default_font;
   }
-LOG(DEBUG) << "returns font";
+
   return iterator->second;
 }
 

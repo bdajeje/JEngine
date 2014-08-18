@@ -3,14 +3,18 @@
 namespace graphics {
 
 Text::Text(const std::string& text, const TextProperties& properties)
-{ LOG(DEBUG) << "text";
-  auto font = font::FontManager::getFont(properties.font); LOG(DEBUG) << "10";
-  setFont( font );  LOG(DEBUG) << "20";
+{
+  setFont( font::FontManager::getFont(properties.font) );
   setCharacterSize(properties.size);
   setColor(properties.color);
   setStyle(properties.style);
   setString(text);
-  LOG(DEBUG) << "text done";
+}
+
+sf::Vector2f Text::getSize() const
+{
+  const sf::FloatRect bounds = getLocalBounds();
+  return { bounds.width, bounds.height };
 }
 
 } // graphics

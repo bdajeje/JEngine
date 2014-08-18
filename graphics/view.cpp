@@ -11,6 +11,13 @@ View::View( uint width, uint height, const std::string& name )
   , m_name(name)
 {}
 
+View::~View()
+{
+  // Delete all graphical objects inside the view
+  for( const auto* graphical_object : m_graphic_objects )
+    delete graphical_object;
+}
+
 bool View::addGraphicObject(const sf::Drawable* graphic_object)
 {
   if( !graphic_object )

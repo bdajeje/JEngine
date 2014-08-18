@@ -21,7 +21,7 @@ bool Window::run()
       if(event.type == sf::Event::Closed)
         close();
     }
-LOG(DEBUG) << "test";
+
     updateDisplay();
   }
 
