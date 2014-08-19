@@ -18,17 +18,13 @@ struct ObjectProperties
    * \param width  to set
    * \param height to set
    */
-  ObjectProperties(uint x, uint y, uint width, uint height)
-    : x{x}
-    , y{y}
-    , width{width}
-    , height{height}
+  ObjectProperties(float x, float y, float width, float height)
+    : position{x, y}
+    , size{width, height}
   {}
 
-  uint x;
-  uint y;
-  uint width;
-  uint height;
+  sf::Vector2f position;
+  sf::Vector2f size;
 };
 
 /* Pure base class for all graphical objects */
@@ -40,7 +36,7 @@ class Object
     Object() {}
 
     /* Destructor */
-    virtual ~Object() = default;
+    virtual ~Object() {}
 
     /* Set this element as visible */
     void show() { m_shown = true; }

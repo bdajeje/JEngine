@@ -13,10 +13,11 @@ SOURCES += main.cpp \
     managers/font_manager.cpp \
     graphics/objects/text.cpp \
     graphics/objects/rectangle.cpp \
-    graphics/utils/sizable.cpp \
     utils/directory.cpp \
     managers/configuration_manager.cpp \
-    graphics/utils/vlayout.cpp
+    graphics/utils/vlayout.cpp \
+    graphics/utils/movable.cpp \
+    graphics/utils/jdrawable.cpp
 
 CONFIG += c++11
 
@@ -35,7 +36,8 @@ HEADERS += \
     managers/font_manager.hpp \
     graphics/objects/text.hpp \
     graphics/objects/rectangle.hpp \
-    graphics/utils/sizable.hpp \
     utils/directory.hpp \
     managers/configuration_manager.hpp \
-    graphics/utils/vlayout.hpp
+    graphics/utils/vlayout.hpp \
+    graphics/utils/movable.hpp \
+    graphics/utils/jdrawable.hpp

@@ -13,11 +13,6 @@ sf::Vector2f Container::getChildPosition(const sf::Vector2f& parent_positions, c
 {
   sf::Vector2f result{};
 
-  LOG(DEBUG) << "\nGet child position";
-  LOG(DEBUG) << "Parent pos: " << parent_positions.x << '/' << parent_positions.y;
-  LOG(DEBUG) << "Parent siz: " << parent_size.x << '/' << parent_size.y;
-  LOG(DEBUG) << "Child size: " << child_size.x << '/' << child_size.y;
-
   // Horizontal
   switch(m_properties.halign)
   {
@@ -45,7 +40,7 @@ sf::Vector2f Container::getChildPosition(const sf::Vector2f& parent_positions, c
       result.y = parent_positions.y + parent_size.y - child_size.y;
       break;
   }
-LOG(DEBUG) << "Child posi: " << result.x << '/' << result.y;
+
   return result;
 }
 

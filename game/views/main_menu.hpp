@@ -2,6 +2,7 @@
 #define MAIN_MENU_HPP
 
 #include "graphics/objects/button.hpp"
+#include "graphics/utils/vlayout.hpp"
 #include "graphics/view.hpp"
 
 namespace game {
@@ -15,9 +16,6 @@ class MainMenu final : public graphics::View
     /* Constructor */
     MainMenu();
 
-    /* Destructor */
-    ~MainMenu();
-
   private:
 
     /* Button play */
@@ -28,6 +26,9 @@ class MainMenu final : public graphics::View
 
     /* Button to exit the application */
     graphics::Button* m_button_quit;
+
+    /* Buttons vertical layout */
+    graphics::utils::VLayout* m_vlayout;
 };
 
 } // views

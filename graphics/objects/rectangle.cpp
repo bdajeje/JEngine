@@ -2,9 +2,9 @@
 
 namespace graphics {
 
-Rectangle::Rectangle(uint width, uint height,
+Rectangle::Rectangle(const sf::Vector2f size,
                      const sf::Color& background_color, const sf::Color& border_color)
-  : sf::RectangleShape{sf::Vector2f(width, height)}
+  : sf::RectangleShape{ size }
 {
   setFillColor( background_color );
   setOutlineColor( border_color );

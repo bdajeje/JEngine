@@ -1,7 +1,6 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
-#include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
 #include "graphics/object.hpp"
@@ -9,13 +8,14 @@
 #include "graphics/objects/text.hpp"
 #include "graphics/utils/container.hpp"
 #include "graphics/utils/properties.hpp"
+#include "graphics/utils/jdrawable.hpp"
 
 namespace graphics {
 
 /* Represents a button */
 class Button : public Object,
                public utils::Container,
-               public sf::Drawable
+               public utils::JDrawable
 {
   public:
 

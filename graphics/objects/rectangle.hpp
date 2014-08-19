@@ -12,7 +12,7 @@ class Rectangle : public Object
 {
   public:
 
-    Rectangle(uint width, uint height,
+    Rectangle(const sf::Vector2f size,
               const sf::Color& background_color, const sf::Color& border_color);
 };
 

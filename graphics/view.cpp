@@ -6,8 +6,8 @@
 
 namespace graphics {
 
-View::View( uint width, uint height, const std::string& name )
-  : utils::Sizable(width, height)
+View::View( const sf::Vector2f position, const sf::Vector2f size, const std::string& name )
+  : utils::JDrawable(size, position)
   , m_name(name)
 {}
 
@@ -18,7 +18,7 @@ View::~View()
     delete graphical_object;
 }
 
-bool View::addGraphicObject(const sf::Drawable* graphic_object)
+bool View::addGraphicObject(JDrawable* graphic_object)
 {
   if( !graphic_object )
   {
@@ -30,10 +30,21 @@ bool View::addGraphicObject(const sf::Drawable* graphic_object)
   return true;
 }
 
-void View::draw(sf::RenderTarget& render_target) const
+void View::draw(sf::RenderTarget& render_target, sf::RenderStates states) const
 {
-  for( const auto* graphical_object : m_graphic_objects )
-    render_target.draw(*graphical_object);
+  //LOG(DEBUG) << "Drawing view " << m_name;
+
+  for( const JDrawable* graphical_object : m_graphic_objects )
+    render_target.draw(*graphical_object, states);
+}
+
+void View::setPosition(float x, float y)
+{
+  for( JDrawable* graphical_object : m_graphic_objects )
+  {
+    const sf::Vector2f& position = graphical_object->getPosition();
+    graphical_object->setPosition( x + position.x, y + position.y );
+  }
 }
 
 } // namespace graphics
