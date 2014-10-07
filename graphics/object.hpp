@@ -23,6 +23,11 @@ struct ObjectProperties
     , size{width, height}
   {}
 
+  ObjectProperties(sf::Vector2f position, sf::Vector2f size)
+    : ObjectProperties(position.x, position.y, size.x, size.y)
+  {}
+
+
   sf::Vector2f position;
   sf::Vector2f size;
 };
@@ -47,10 +52,16 @@ class Object
     /* Is this element visible ? */
     bool isVisible() const { return m_shown; }
 
+    bool isSelected() const { return m_selected; }
+
+    void activate() { m_selected = true; }
+
   private:
 
     /* Is this element visible */
     bool m_shown {true};
+
+    bool m_selected {false};
 };
 
 } // namespace graphics

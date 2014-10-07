@@ -13,15 +13,21 @@ Window::Window(uint width, uint height, const std::string& title)
 
 bool Window::run()
 {
+  // Main application loop
   while( isOpen() )
   {
     sf::Event event;
     while( pollEvent(event) )
     {
+      // Close the main window
       if(event.type == sf::Event::Closed)
         close();
+
+      // Give incoming events to the current view
+      m_current_view->incomingEvent( event.type );
     }
 
+    // Update display
     updateDisplay();
   }
 

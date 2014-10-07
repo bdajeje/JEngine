@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "game/managers/event_manager.hpp"
 #include "graphics/utils/jdrawable.hpp"
 
 namespace graphics {
@@ -11,7 +12,8 @@ namespace graphics {
 /* Represents a view in the window
  * Holds one or several drawable objects to render on the screen
  */
-class View : public utils::JDrawable
+class View : public utils::JDrawable,
+             public game::EventManager
 {
   public:
 
@@ -36,8 +38,13 @@ class View : public utils::JDrawable
      */
     bool addGraphicObject(JDrawable* graphic_object);
 
+    void addGraphicObjects(const std::vector<JDrawable*>& items) { m_graphic_objects.insert(m_graphic_objects.end(), items.begin(), items.end()); }
+
     /* Move all elements of the view */
     virtual void setPosition(float x, float y);
+
+    /* Set the currently selected graphic item */
+    void setCurrentSelected( JDrawable* graphic_item );
 
   protected:
 
@@ -46,6 +53,9 @@ class View : public utils::JDrawable
 
     /* Graphical objects contained in this view */
     std::vector<JDrawable*> m_graphic_objects;
+
+    /* Currently selected item */
+    uint m_current_selected_pos {0};
 };
 
 } // namespace graphics

@@ -47,7 +47,7 @@ bool FontManager::loadFont( Font font_name )
     return false;
   }
 
-  LOG(DEBUG) << "Font loaded: " << font_path;
+  //LOG(DEBUG) << "Font loaded: " << font_path;
   m_fonts[font_name] = std::move(font);
   return true;
 }

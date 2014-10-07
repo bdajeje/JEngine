@@ -7,16 +7,15 @@
 namespace graphics {
 namespace utils {
 
-class VLayout final : public Object,
-                      public View
+class VLayout final : public View
 {
   public:
 
     VLayout(const sf::Vector2f position, const sf::Vector2f size, const std::string& name);
 
-    void addItem(JDrawable* item) { m_graphic_objects.push_back(item); updatePosition(); }
+    void addItem(JDrawable* item) { addGraphicObject(item); updatePosition(); }
 
-    void addItems(std::vector<JDrawable*> items) { m_graphic_objects.insert(m_graphic_objects.end(), items.begin(), items.end()); updatePosition(); }
+    void addItems(const std::vector<JDrawable*>& items) { addGraphicObjects(items); updatePosition(); }
 
   protected:
 

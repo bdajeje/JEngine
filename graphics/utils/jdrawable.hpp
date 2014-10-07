@@ -3,12 +3,14 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 
+#include "graphics/object.hpp"
 #include "graphics/utils/movable.hpp"
 
 namespace graphics {
 namespace utils {
 
 class JDrawable : public Movable,
+                  public Object,
                   public sf::Drawable
 {
   public:

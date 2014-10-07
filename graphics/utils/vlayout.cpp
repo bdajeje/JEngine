@@ -4,7 +4,7 @@ namespace graphics {
 namespace utils {
 
 VLayout::VLayout(const sf::Vector2f position, const sf::Vector2f size, const std::string& name)
-  : View{ size, position, name }
+  : View{ position, size, name }
 {}
 
 void VLayout::updatePosition()
@@ -12,12 +12,13 @@ void VLayout::updatePosition()
   if(m_graphic_objects.empty())
     return;
 
-  const sf::Vector2f& view_pos   = getPosition();
+  const sf::Vector2f& view_pos = getPosition();
   const auto shift = getSize().y / m_graphic_objects.size();
   float pos_y      = view_pos.y;
-  for( JDrawable* object : m_graphic_objects ) {
-    object->setPosition( view_pos.x, pos_y - (object->getSize().y / 2) );
-    LOG(DEBUG) << view_pos.x << "/" << pos_y - (object->getSize().y / 2);
+
+  for( JDrawable* object : m_graphic_objects )
+  {
+    object->setPosition( view_pos.x, pos_y );
     pos_y += shift;
   }
 }

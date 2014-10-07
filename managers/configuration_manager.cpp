@@ -34,4 +34,10 @@ const std::string& ConfigurationManager::fontDirectory()
   return result;
 }
 
+const std::string& ConfigurationManager::imageDirectory()
+{
+  static const std::string result = applicationDirectory() + "images/";
+  return result;
+}
+
 } // config

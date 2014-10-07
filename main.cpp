@@ -2,7 +2,9 @@
 
 #include "managers/configuration_manager.hpp"
 #include "managers/font_manager.hpp"
+#include "managers/texture_manager.hpp"
 #include "game/views/main_menu.hpp"
+#include "game/utils/defines.hpp"
 #include "graphics/window.hpp"
 
 _INITIALIZE_EASYLOGGINGPP
@@ -18,12 +20,13 @@ int main(int argc, char** argv)
   // Set some configurations
   config::ConfigurationManager::init(argc, argv);
   font::FontManager::init( config::ConfigurationManager::fontDirectory() );
+  texture::TextureManager::init( config::ConfigurationManager::imageDirectory() );
 
   // Main menu view
   game::views::MainMenu* view_main_menu = new game::views::MainMenu{};
 
   // Window
-  graphics::Window window{1200, 800, "JEngine"};
+  graphics::Window window {window::WIDTH, window::HEIGHT, "JEngine"};
   window.setCurrentView( view_main_menu );
   window.run();
 

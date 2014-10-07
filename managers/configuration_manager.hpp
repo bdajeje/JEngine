@@ -23,6 +23,8 @@ class ConfigurationManager final
 
     static const std::string& fontDirectory();
 
+    static const std::string& imageDirectory();
+
   private:
 
     /* Hidden constructor

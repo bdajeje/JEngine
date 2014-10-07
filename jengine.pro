@@ -17,7 +17,11 @@ SOURCES += main.cpp \
     managers/configuration_manager.cpp \
     graphics/utils/vlayout.cpp \
     graphics/utils/movable.cpp \
-    graphics/utils/jdrawable.cpp
+    graphics/utils/jdrawable.cpp \
+    managers/texture_manager.cpp \
+    graphics/objects/sprite.cpp \
+    game/utils/tab_indexable.cpp \
+    game/managers/event_manager.cpp
 
 CONFIG += c++11
 
@@ -40,4 +44,9 @@ HEADERS += \
     managers/configuration_manager.hpp \
     graphics/utils/vlayout.hpp \
     graphics/utils/movable.hpp \
-    graphics/utils/jdrawable.hpp
+    graphics/utils/jdrawable.hpp \
+    game/utils/defines.hpp \
+    managers/texture_manager.hpp \
+    graphics/objects/sprite.hpp \
+    game/utils/tab_indexable.hpp \
+    game/managers/event_manager.hpp

@@ -10,9 +10,21 @@ Button::Button( const std::string& text, const TextProperties& text_properties,
   , m_background{ object_properties.size, sf::Color::White, sf::Color::Black }
 {}
 
+Button::~Button()
+{
+  delete m_background_image;
+  delete m_background_selected_image;
+}
+
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
   target.draw( m_background, states );
+
+  if( m_background_selected_image && isSelected() )
+    target.draw( *m_background_selected_image, states );
+  else if(m_background_image)
+    target.draw( *m_background_image, states );
+
   target.draw( m_text, states );
 }
 
@@ -22,6 +34,18 @@ void Button::setPosition(float x, float y)
 
   // Position the text relatively to the background position
   m_text.setPosition( getChildPosition( m_background.getPosition(), m_background.getSize(), m_text.getSize() ) );
+}
+
+void Button::setBackground( const sf::Texture& texture )
+{
+  delete m_background_image;
+  m_background_image = new Sprite(texture, {m_size, m_position});
+}
+
+void Button::setBackgroundSelected( const sf::Texture& texture )
+{
+  delete m_background_selected_image;
+  m_background_selected_image = new Sprite(texture, {m_size, m_position});
 }
 
 } // graphics

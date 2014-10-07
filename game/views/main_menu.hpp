@@ -2,6 +2,7 @@
 #define MAIN_MENU_HPP
 
 #include "graphics/objects/button.hpp"
+#include "graphics/objects/sprite.hpp"
 #include "graphics/utils/vlayout.hpp"
 #include "graphics/view.hpp"
 
@@ -17,6 +18,16 @@ class MainMenu final : public graphics::View
     MainMenu();
 
   private:
+
+    static graphics::Button* createButton(const std::string& text, const graphics::TextProperties& text_props,
+                                          const graphics::ObjectProperties& object_props, const graphics::utils::ContainerProperties& container_props);
+
+    void setTabIndexables();
+
+  private:
+
+    /* Background */
+    graphics::Sprite* m_background;
 
     /* Button play */
     graphics::Button* m_button_play;

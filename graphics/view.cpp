@@ -47,4 +47,12 @@ void View::setPosition(float x, float y)
   }
 }
 
+void View::setCurrentSelected( JDrawable* graphic_item )
+{
+  if(!graphic_item)
+    return;
+
+  graphic_item->activate();
+}
+
 } // namespace graphics
