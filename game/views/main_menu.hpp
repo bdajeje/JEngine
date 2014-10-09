@@ -6,10 +6,12 @@
 #include "graphics/utils/vlayout.hpp"
 #include "graphics/view.hpp"
 
+#include <memory>
+
 namespace game {
 namespace views {
 
-/* Main menu of the game */
+/* main menu of the game */
 class MainMenu final : public graphics::View
 {
   public:
@@ -19,27 +21,29 @@ class MainMenu final : public graphics::View
 
   private:
 
-    static graphics::Button* createButton(const std::string& text, const graphics::TextProperties& text_props,
-                                          const graphics::ObjectProperties& object_props, const graphics::utils::ContainerProperties& container_props);
+    static std::shared_ptr<graphics::Button> createButton(const std::string& text, const graphics::TextProperties& text_props,
+                                                          const graphics::ObjectProperties& object_props,
+                                                          const graphics::utils::ContainerProperties& container_props);
 
     void setTabIndexables();
+    void setEvents();
 
   private:
 
     /* Background */
-    graphics::Sprite* m_background;
+    std::shared_ptr<graphics::Sprite> m_background;
 
     /* Button play */
-    graphics::Button* m_button_play;
+    std::shared_ptr<graphics::Button> m_button_play;
 
     /* Button settings */
-    graphics::Button* m_button_settings;
+    std::shared_ptr<graphics::Button> m_button_settings;
 
     /* Button to exit the application */
-    graphics::Button* m_button_quit;
+    std::shared_ptr<graphics::Button> m_button_quit;
 
     /* Buttons vertical layout */
-    graphics::utils::VLayout* m_vlayout;
+    std::shared_ptr<graphics::utils::VLayout> m_vlayout;
 };
 
 } // views

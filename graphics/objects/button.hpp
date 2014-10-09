@@ -28,11 +28,6 @@ class Button final : public utils::Container,
      */
     Button( const std::string& text, const TextProperties& text_properties, const ObjectProperties& object_properties, const utils::ContainerProperties& properties = {} );
 
-    /* Destructor */
-    virtual ~Button();
-
-  // Setters
-
     // Set background color
     void setBackgroundColor(const sf::Color& color) { m_background.setFillColor( color ); }
 
@@ -57,10 +52,10 @@ class Button final : public utils::Container,
     Rectangle m_background;
 
     /* Button background */
-    Sprite* m_background_image {nullptr};
+    std::unique_ptr<Sprite> m_background_image;
 
     /* Button background when selected */
-    Sprite* m_background_selected_image {nullptr};
+    std::unique_ptr<Sprite> m_background_selected_image;
 };
 
 } // graphics

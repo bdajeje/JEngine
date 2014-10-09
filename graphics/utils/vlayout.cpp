@@ -16,7 +16,7 @@ void VLayout::updatePosition()
   const auto shift = getSize().y / m_graphic_objects.size();
   float pos_y      = view_pos.y;
 
-  for( JDrawable* object : m_graphic_objects )
+  for( auto object : m_graphic_objects )
   {
     object->setPosition( view_pos.x, pos_y );
     pos_y += shift;

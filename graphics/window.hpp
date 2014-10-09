@@ -1,6 +1,7 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
+#include <memory>
 #include <string>
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -31,7 +32,7 @@ class Window final : public sf::RenderWindow
     bool run();
 
     /* Set a view to show as the current one */
-    void setCurrentView( const View* view ) { m_current_view = view; }
+    void setCurrentView( std::shared_ptr<const View> view ) { m_current_view = view; }
 
   private:
 
@@ -40,7 +41,7 @@ class Window final : public sf::RenderWindow
 
   private:
 
-    const View* m_current_view = nullptr;
+    std::shared_ptr<const View> m_current_view;
 };
 
 } // namespace graphics

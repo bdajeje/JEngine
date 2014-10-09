@@ -16,7 +16,8 @@ MainMenu::MainMenu()
   const graphics::utils::ContainerProperties container_props { graphics::utils::HAlign::Center, graphics::utils::VAlign::Middle };
 
   // Background
-  m_background = new graphics::Sprite( texture::TextureManager::get( Texture::MenuBackground ), {0, 0, main_menu::WIDTH, main_menu::HEIGHT} );
+  m_background = std::make_shared<graphics::Sprite>( texture::TextureManager::get( Texture::MenuBackground ),
+                                                     graphics::ObjectProperties{0, 0, main_menu::WIDTH, main_menu::HEIGHT} );
 
   // Play button
   m_button_play = createButton("PLAY", text_props, button_props, container_props);
@@ -28,7 +29,7 @@ MainMenu::MainMenu()
   m_button_quit = createButton("QUIT", text_props, button_props, container_props);
 
   // Position buttons in a VLayout
-  m_vlayout = new graphics::utils::VLayout({0, 0}, {600, 500}, "Main Menu Buttons VLayout");
+  m_vlayout = std::make_shared<graphics::utils::VLayout>(sf::Vector2f{0, 0}, sf::Vector2f{600, 500}, "Main Menu Buttons VLayout");
   m_vlayout->addItem(m_button_play);
   m_vlayout->addItem(m_button_settings);
   m_vlayout->addItem(m_button_quit);
@@ -41,6 +42,12 @@ MainMenu::MainMenu()
   setCurrentSelected( m_button_play );
 
   setTabIndexables();
+  setEvents();
+}
+
+void MainMenu::setEvents()
+{
+  //bindEventKey( sf::Event::key, std::bind(&aClass::test, a, _1, _2) );
 }
 
 void MainMenu::setTabIndexables()
@@ -58,10 +65,10 @@ void MainMenu::setTabIndexables()
   m_button_quit->setNext( utils::TabIndexable::Bottom, m_button_play );
 }
 
-graphics::Button* MainMenu::createButton(const std::string& text, const graphics::TextProperties& text_props,
+std::shared_ptr<graphics::Button> MainMenu::createButton(const std::string& text, const graphics::TextProperties& text_props,
                                          const graphics::ObjectProperties& object_props, const graphics::utils::ContainerProperties& container_props)
 {
-  auto button = new graphics::Button( text, text_props, object_props, container_props );
+  auto button = std::make_shared<graphics::Button>( text, text_props, object_props, container_props );
   button->setBackgroundColor( sf::Color::White );
   button->setBackground( texture::TextureManager::get( Texture::ButtonBackground ) );
   button->setBackgroundSelected( texture::TextureManager::get( Texture::ButtonBackgroundSelected ) );

@@ -2,6 +2,7 @@
 #define TAB_INDEXABLE_HPP
 
 #include <map>
+#include <memory>
 
 namespace game {
 namespace utils {
@@ -26,16 +27,16 @@ class TabIndexable
      * \param direction action
      * \param next      target to select for the given direction
      */
-    void setNext( Direction direction, const TabIndexable* next );
+    void setNext( Direction direction, std::shared_ptr<const TabIndexable> next );
 
     /* Get next element to target for a given direction
      * \param direction to check
      */
-    const TabIndexable* next( Direction direction ) const;
+    std::shared_ptr<const TabIndexable> next( Direction direction ) const;
 
   private:
 
-    std::map<Direction, const TabIndexable*> m_targets;
+    std::map<Direction, std::shared_ptr<const TabIndexable>> m_targets;
 };
 
 } // utils

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "game/managers/event_manager.hpp"
 #include "graphics/utils/jdrawable.hpp"
@@ -25,7 +26,7 @@ class View : public utils::JDrawable,
     View( const sf::Vector2f position, const sf::Vector2f size, const std::string& name = {} );
 
     /* Destrutor */
-    virtual ~View();
+    virtual ~View() = default;
 
     /* Draw the view
      * \param render_target where to draw the view
@@ -36,15 +37,15 @@ class View : public utils::JDrawable,
      * \param graphic_object to add
      * \return true if the graphical object as been added to the view, false otherwise (example nullptr object)
      */
-    bool addGraphicObject(JDrawable* graphic_object);
+    bool addGraphicObject(std::shared_ptr<JDrawable> graphic_object);
 
-    void addGraphicObjects(const std::vector<JDrawable*>& items) { m_graphic_objects.insert(m_graphic_objects.end(), items.begin(), items.end()); }
+    void addGraphicObjects(const std::vector<std::shared_ptr<JDrawable>>& items) { m_graphic_objects.insert(m_graphic_objects.end(), items.begin(), items.end()); }
 
     /* Move all elements of the view */
     virtual void setPosition(float x, float y);
 
     /* Set the currently selected graphic item */
-    void setCurrentSelected( JDrawable* graphic_item );
+    void setCurrentSelected( std::shared_ptr<JDrawable> graphic_item );
 
   protected:
 
@@ -52,7 +53,7 @@ class View : public utils::JDrawable,
     std::string m_name;
 
     /* Graphical objects contained in this view */
-    std::vector<JDrawable*> m_graphic_objects;
+    std::vector<std::shared_ptr<JDrawable>> m_graphic_objects;
 
     /* Currently selected item */
     uint m_current_selected_pos {0};

@@ -17,7 +17,7 @@ class JDrawable : public Movable,
 
     JDrawable(const sf::Vector2f& size, const sf::Vector2f& position);
 
-    virtual ~JDrawable() {}
+    virtual ~JDrawable() = default;
 
     virtual void draw(sf::RenderTarget& render_target, sf::RenderStates states = sf::RenderStates::Default) const = 0;
 

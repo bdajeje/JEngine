@@ -24,7 +24,8 @@ bool Window::run()
         close();
 
       // Give incoming events to the current view
-      m_current_view->incomingEvent( event.type );
+      if(m_current_view)
+        m_current_view->incomingEvent( event );
     }
 
     // Update display

@@ -23,15 +23,12 @@ int main(int argc, char** argv)
   texture::TextureManager::init( config::ConfigurationManager::imageDirectory() );
 
   // Main menu view
-  game::views::MainMenu* view_main_menu = new game::views::MainMenu{};
+  auto view_main_menu = std::make_shared<game::views::MainMenu>();
 
   // Window
   graphics::Window window {window::WIDTH, window::HEIGHT, "JEngine"};
   window.setCurrentView( view_main_menu );
   window.run();
-
-  // Clean
-  delete view_main_menu;
 
   return EXIT_SUCCESS;
 }

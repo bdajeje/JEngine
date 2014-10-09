@@ -11,14 +11,7 @@ View::View( const sf::Vector2f position, const sf::Vector2f size, const std::str
   , m_name(name)
 {}
 
-View::~View()
-{
-  // Delete all graphical objects inside the view
-  for( const auto* graphical_object : m_graphic_objects )
-    delete graphical_object;
-}
-
-bool View::addGraphicObject(JDrawable* graphic_object)
+bool View::addGraphicObject(std::shared_ptr<JDrawable> graphic_object)
 {
   if( !graphic_object )
   {
@@ -32,22 +25,20 @@ bool View::addGraphicObject(JDrawable* graphic_object)
 
 void View::draw(sf::RenderTarget& render_target, sf::RenderStates states) const
 {
-  //LOG(DEBUG) << "Drawing view " << m_name;
-
-  for( const JDrawable* graphical_object : m_graphic_objects )
+  for( const auto& graphical_object : m_graphic_objects )
     render_target.draw(*graphical_object, states);
 }
 
 void View::setPosition(float x, float y)
 {
-  for( JDrawable* graphical_object : m_graphic_objects )
+  for( auto& graphical_object : m_graphic_objects )
   {
     const sf::Vector2f& position = graphical_object->getPosition();
     graphical_object->setPosition( x + position.x, y + position.y );
   }
 }
 
-void View::setCurrentSelected( JDrawable* graphic_item )
+void View::setCurrentSelected( std::shared_ptr<JDrawable> graphic_item )
 {
   if(!graphic_item)
     return;

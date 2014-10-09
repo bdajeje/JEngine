@@ -10,12 +10,6 @@ Button::Button( const std::string& text, const TextProperties& text_properties,
   , m_background{ object_properties.size, sf::Color::White, sf::Color::Black }
 {}
 
-Button::~Button()
-{
-  delete m_background_image;
-  delete m_background_selected_image;
-}
-
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
   target.draw( m_background, states );
@@ -38,14 +32,12 @@ void Button::setPosition(float x, float y)
 
 void Button::setBackground( const sf::Texture& texture )
 {
-  delete m_background_image;
-  m_background_image = new Sprite(texture, {m_size, m_position});
+  m_background_image.reset( new Sprite{texture, ObjectProperties{m_size, m_position}} );
 }
 
 void Button::setBackgroundSelected( const sf::Texture& texture )
 {
-  delete m_background_selected_image;
-  m_background_selected_image = new Sprite(texture, {m_size, m_position});
+  m_background_selected_image.reset( new Sprite{texture, ObjectProperties{m_size, m_position}} );
 }
 
 } // graphics

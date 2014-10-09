@@ -17,16 +17,28 @@ class EventManager
 {
   public:
 
+    typedef std::function<void(const sf::Event&)> EventCallback;
+    typedef std::vector<EventCallback> CallbackList;
+
     EventManager() = default;
 
-    void incomingEvent(const sf::Event::EventType& event) const;
+    void incomingEvent(const sf::Event& event) const;
 
-    void addEvent(sf::Event::EventType event_type, std::function<void(sf::Event::EventType)> callback);
+    void bindEvent(sf::Event::EventType event_type, EventCallback callback);
+    void bindEventKeyboard(sf::Keyboard::Key key, EventCallback callback);
+
+  private:
+
+    /* Helper function to call every callback functions inside a list of callbacks
+     * \param callback_list list of callbacks to call
+     */
+    void callCallbacks(const CallbackList& list, const sf::Event& event) const;
 
   private:
 
     /* Map an event to a list of callbacks */
-    std::map<sf::Event::EventType, std::vector<std::function<void(sf::Event::EventType)>>> m_bindings;
+    std::map<sf::Event::EventType, CallbackList> m_general_bindings;
+    std::map<sf::Keyboard::Key, CallbackList> m_keyboard_bindings;
 };
 
 } // game
