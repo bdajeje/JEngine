@@ -4,6 +4,8 @@
 #include <map>
 #include <memory>
 
+#include <SFML/Window/Keyboard.hpp>
+
 namespace game {
 namespace utils {
 
@@ -18,7 +20,7 @@ class TabIndexable
   public:
 
     /* Direction events */
-    enum Direction { Top, Bottom, Left, Right };
+    enum Direction { Up, Down, Left, Right };
 
     /* Constructor */
     TabIndexable() = default;
@@ -27,16 +29,22 @@ class TabIndexable
      * \param direction action
      * \param next      target to select for the given direction
      */
-    void setNext( Direction direction, std::shared_ptr<const TabIndexable> next );
+    void setNext( Direction direction, std::shared_ptr<TabIndexable> next );
 
     /* Get next element to target for a given direction
      * \param direction to check
      */
-    std::shared_ptr<const TabIndexable> next( Direction direction ) const;
+    std::shared_ptr<TabIndexable> next( Direction direction );
+
+    /* Get next element to target for a given direction
+     * Helper function with keyboard keys
+     * \param direction to check
+     */
+    std::shared_ptr<TabIndexable> next( sf::Keyboard::Key key );
 
   private:
 
-    std::map<Direction, std::shared_ptr<const TabIndexable>> m_targets;
+    std::map<Direction, std::shared_ptr<TabIndexable>> m_targets;
 };
 
 } // utils

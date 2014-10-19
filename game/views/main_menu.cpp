@@ -8,72 +8,41 @@ namespace game {
 namespace views {
 
 MainMenu::MainMenu()
-  : graphics::View({0, 0}, {main_menu::WIDTH, main_menu::HEIGHT}, "Game Main Menu")
+  : Menu({0, 0}, {main_menu::WIDTH, main_menu::HEIGHT},
+         texture::TextureManager::get(Texture::MenuBackground),
+         {(main_menu::WIDTH - main_menu::BUTTONS_WIDTH) / 2, main_menu::HEIGHT / 4}, {main_menu::BUTTONS_WIDTH, main_menu::HEIGHT / 2}
+         , "Main Menu")
 {
   // Object properties
   const graphics::TextProperties text_props {font::Font::FreeMono, 20, sf::Color::Yellow, 0};
   const graphics::ObjectProperties button_props {0, 0, main_menu::BUTTONS_WIDTH, main_menu::BUTTONS_HEIGHT};
-  const graphics::utils::ContainerProperties container_props { graphics::utils::HAlign::Center, graphics::utils::VAlign::Middle };
-
-  // Background
-  m_background = std::make_shared<graphics::Sprite>( texture::TextureManager::get( Texture::MenuBackground ),
-                                                     graphics::ObjectProperties{0, 0, main_menu::WIDTH, main_menu::HEIGHT} );
+  const graphics::utils::ContainerProperties container_props { graphics::utils::HAlign::Center, graphics::utils::VAlign::Middle, graphics::utils::Margins{-8,0} };
 
   // Play button
-  m_button_play = createButton("PLAY", text_props, button_props, container_props);
+  m_button_play = createButton("PLAY", text_props, button_props, container_props, Texture::ButtonBackground, Texture::ButtonBackgroundSelected);
 
   // Settings button
-  m_button_settings = createButton("SETTINGS", text_props, button_props, container_props);
+  m_button_settings = createButton("SETTINGS", text_props, button_props, container_props, Texture::ButtonBackground, Texture::ButtonBackgroundSelected);
 
   // Quit button
-  m_button_quit = createButton("QUIT", text_props, button_props, container_props);
+  m_button_quit = createButton("QUIT", text_props, button_props, container_props, Texture::ButtonBackground, Texture::ButtonBackgroundSelected);
+
+  // Events
+  setPressedEvent(m_button_quit, std::bind(&MainMenu::quit, this) );
 
   // Position buttons in a VLayout
-  m_vlayout = std::make_shared<graphics::utils::VLayout>(sf::Vector2f{0, 0}, sf::Vector2f{600, 500}, "Main Menu Buttons VLayout");
-  m_vlayout->addItem(m_button_play);
-  m_vlayout->addItem(m_button_settings);
-  m_vlayout->addItem(m_button_quit);
-
-  // Add objects to the view
-  addGraphicObject( m_background );
-  addGraphicObject( m_vlayout );
+  addButton(m_button_play);
+  addButton(m_button_settings);
+  addButton(m_button_quit);
 
   // Item selection order
   setCurrentSelected( m_button_play );
-
-  setTabIndexables();
-  setEvents();
 }
 
-void MainMenu::setEvents()
+void MainMenu::quit()
 {
-  //bindEventKey( sf::Event::key, std::bind(&aClass::test, a, _1, _2) );
-}
-
-void MainMenu::setTabIndexables()
-{
-  // Play button
-  m_button_play->setNext( utils::TabIndexable::Top, m_button_quit );
-  m_button_play->setNext( utils::TabIndexable::Bottom, m_button_settings );
-
-  // Settings button
-  m_button_settings->setNext( utils::TabIndexable::Top, m_button_play );
-  m_button_settings->setNext( utils::TabIndexable::Bottom, m_button_quit );
-
-  // Quit button
-  m_button_quit->setNext( utils::TabIndexable::Top, m_button_settings );
-  m_button_quit->setNext( utils::TabIndexable::Bottom, m_button_play );
-}
-
-std::shared_ptr<graphics::Button> MainMenu::createButton(const std::string& text, const graphics::TextProperties& text_props,
-                                         const graphics::ObjectProperties& object_props, const graphics::utils::ContainerProperties& container_props)
-{
-  auto button = std::make_shared<graphics::Button>( text, text_props, object_props, container_props );
-  button->setBackgroundColor( sf::Color::White );
-  button->setBackground( texture::TextureManager::get( Texture::ButtonBackground ) );
-  button->setBackgroundSelected( texture::TextureManager::get( Texture::ButtonBackgroundSelected ) );
-
-  return button;
+  LOG(DEBUG) << "QUIT" << std::endl;
+  m_view_event = game::ViewEvent::CLOSE;
 }
 
 } // views

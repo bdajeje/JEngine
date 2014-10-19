@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     managers/texture_manager.cpp \
     graphics/objects/sprite.cpp \
     game/utils/tab_indexable.cpp \
-    game/managers/event_manager.cpp
+    game/managers/event_manager.cpp \
+    game/views/menu.cpp
 
 CONFIG += c++11
 
@@ -49,4 +50,5 @@ HEADERS += \
     managers/texture_manager.hpp \
     graphics/objects/sprite.hpp \
     game/utils/tab_indexable.hpp \
-    game/managers/event_manager.hpp
+    game/managers/event_manager.hpp \
+    game/views/menu.hpp

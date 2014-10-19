@@ -22,6 +22,8 @@ class JDrawable : public Movable,
     virtual void draw(sf::RenderTarget& render_target, sf::RenderStates states = sf::RenderStates::Default) const = 0;
 
     virtual void setPosition(float x, float y) = 0;
+
+    void translate(float x, float y);
 };
 
 } // utils

@@ -26,6 +26,9 @@ bool Window::run()
       // Give incoming events to the current view
       if(m_current_view)
         m_current_view->incomingEvent( event );
+
+      // Manage view events
+      viewEvent();
     }
 
     // Update display
@@ -48,6 +51,25 @@ void Window::updateDisplay()
 
   // Display everything
   display();
+}
+
+void Window::setViewSwitching(std::shared_ptr<const View> view, game::ViewEvent event, game::Callback callback)
+{
+  m_views_events[view][event] = callback;
+}
+
+void Window::viewEvent()
+{
+  auto found_view_events = m_views_events.find(m_current_view);
+  if( found_view_events == m_views_events.end() )
+    return;
+
+  auto view_events = found_view_events->second;
+  auto found_callback = view_events.find(m_current_view->viewEvent());
+  if(found_callback == view_events.end())
+    return;
+
+  found_callback->second();
 }
 
 } // namespace graphics

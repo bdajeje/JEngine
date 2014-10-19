@@ -41,7 +41,7 @@ class Object
     Object() {}
 
     /* Destructor */
-    virtual ~Object() {}
+    virtual ~Object() = default;
 
     /* Set this element as visible */
     void show() { m_shown = true; }
@@ -49,12 +49,14 @@ class Object
     /* Hide this element */
     void hide() { m_shown = false; }
 
+    void select() { m_selected = true; }
+
+    void unselect() { m_selected = false; }
+
     /* Is this element visible ? */
     bool isVisible() const { return m_shown; }
 
     bool isSelected() const { return m_selected; }
-
-    void activate() { m_selected = true; }
 
   private:
 

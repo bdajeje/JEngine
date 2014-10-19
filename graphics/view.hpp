@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "game/managers/event_manager.hpp"
+#include "game/utils/defines.hpp"
 #include "graphics/utils/jdrawable.hpp"
 
 namespace graphics {
@@ -47,6 +48,15 @@ class View : public utils::JDrawable,
     /* Set the currently selected graphic item */
     void setCurrentSelected( std::shared_ptr<JDrawable> graphic_item );
 
+    /* Get last added Drawable */
+    virtual std::shared_ptr<JDrawable> last() const;
+
+    game::ViewEvent viewEvent() const { return m_view_event; }
+
+  protected:
+
+    void setPositionInView( std::shared_ptr<JDrawable> graphical_object ) const;
+
   protected:
 
     /* Name of this view */
@@ -56,7 +66,10 @@ class View : public utils::JDrawable,
     std::vector<std::shared_ptr<JDrawable>> m_graphic_objects;
 
     /* Currently selected item */
-    uint m_current_selected_pos {0};
+    std::shared_ptr<JDrawable> m_current_selected_object;
+
+    /* Next event of the view (managed by the window) */
+    game::ViewEvent m_view_event {game::ViewEvent::NOTHING};
 };
 
 } // namespace graphics

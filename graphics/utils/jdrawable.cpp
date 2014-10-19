@@ -8,5 +8,10 @@ JDrawable::JDrawable(const sf::Vector2f& size, const sf::Vector2f& position)
 {
 }
 
+void JDrawable::translate(float x, float y)
+{
+  setPosition( m_position.x + x, m_position.y + y );
+}
+
 } // utils
 } // graphics

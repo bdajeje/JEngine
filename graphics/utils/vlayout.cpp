@@ -18,7 +18,7 @@ void VLayout::updatePosition()
 
   for( auto object : m_graphic_objects )
   {
-    object->setPosition( view_pos.x, pos_y );
+    object->setPosition( object->getPosition().x, pos_y );
     pos_y += shift;
   }
 }

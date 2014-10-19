@@ -28,9 +28,6 @@ class Button final : public utils::Container,
      */
     Button( const std::string& text, const TextProperties& text_properties, const ObjectProperties& object_properties, const utils::ContainerProperties& properties = {} );
 
-    // Set background color
-    void setBackgroundColor(const sf::Color& color) { m_background.setFillColor( color ); }
-
     void setBackground( const sf::Texture& texture );
     void setBackgroundSelected( const sf::Texture& texture );
 
@@ -47,9 +44,6 @@ class Button final : public utils::Container,
 
     /* Text inside the button */
     Text m_text;
-
-    /* Background and borders */
-    Rectangle m_background;
 
     /* Button background */
     std::unique_ptr<Sprite> m_background_image;

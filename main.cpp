@@ -7,6 +7,8 @@
 #include "game/utils/defines.hpp"
 #include "graphics/window.hpp"
 
+#include <functional>
+
 _INITIALIZE_EASYLOGGINGPP
 
 int main(int argc, char** argv)
@@ -28,6 +30,7 @@ int main(int argc, char** argv)
   // Window
   graphics::Window window {window::WIDTH, window::HEIGHT, "JEngine"};
   window.setCurrentView( view_main_menu );
+  window.setViewSwitching( view_main_menu, game::ViewEvent::CLOSE, std::bind(&graphics::Window::close, &window) );
   window.run();
 
   return EXIT_SUCCESS;

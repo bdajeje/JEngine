@@ -11,7 +11,7 @@ Container::Container( const ContainerProperties& properties )
 
 sf::Vector2f Container::getChildPosition(const sf::Vector2f& parent_positions, const sf::Vector2f& parent_size, const sf::Vector2f& child_size ) const
 {
-  sf::Vector2f result{};
+  sf::Vector2f result;
 
   // Horizontal
   switch(m_properties.halign)
@@ -40,6 +40,9 @@ sf::Vector2f Container::getChildPosition(const sf::Vector2f& parent_positions, c
       result.y = parent_positions.y + parent_size.y - child_size.y;
       break;
   }
+
+  result.x += m_properties.margins.left;
+  result.y += m_properties.margins.top;
 
   return result;
 }

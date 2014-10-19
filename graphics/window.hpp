@@ -6,6 +6,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include "game/utils/defines.hpp"
+
 namespace graphics {
 
 class View;
@@ -34,14 +36,21 @@ class Window final : public sf::RenderWindow
     /* Set a view to show as the current one */
     void setCurrentView( std::shared_ptr<const View> view ) { m_current_view = view; }
 
+    void setViewSwitching(std::shared_ptr<const View> view, game::ViewEvent, game::Callback);
+
   private:
 
     /* Update the display at each frame */
     void updateDisplay();
 
+    /* Take care of view events */
+    void viewEvent();
+
   private:
 
     std::shared_ptr<const View> m_current_view;
+
+    std::map<std::shared_ptr<const View>, game::ViewEvents> m_views_events;
 };
 
 } // namespace graphics

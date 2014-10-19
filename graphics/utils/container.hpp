@@ -10,17 +10,33 @@
 namespace graphics {
 namespace utils {
 
+/* Represents margin on a block
+ * top and left accept negative values
+ */
+struct Margins
+{
+  Margins(int top, int left)
+    : top(top)
+    , left(left)
+  {}
+
+  int top {0};
+  int left {0};
+};
+
 /* Helper struct to hold properties */
 struct ContainerProperties
 {
   /* Constructor */
-  ContainerProperties( HAlign halign = HAlign::Center, VAlign valign = VAlign::Middle )
+    ContainerProperties( HAlign halign = HAlign::Center, VAlign valign = VAlign::Middle, Margins margins = {0,0} )
     : halign{halign}
     , valign{valign}
+    , margins{margins}
   {}
 
-  HAlign halign {HAlign::Center};
-  VAlign valign {VAlign::Middle};
+  HAlign  halign {HAlign::Center};
+  VAlign  valign {VAlign::Middle};
+  Margins margins;
 };
 
 /* Reprensents an object that can contains other objects
