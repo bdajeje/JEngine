@@ -1,13 +1,11 @@
-#include "utils/logging/easylogging++.h"
+// JEngine
+#include "jengine/utils/logging/easylogging++.h"
+#include "jengine/managers/configuration_manager.hpp"
+#include "jengine/managers/font_manager.hpp"
+#include "jengine/managers/texture_manager.hpp"
 
-#include "managers/configuration_manager.hpp"
-#include "managers/font_manager.hpp"
-#include "managers/texture_manager.hpp"
-#include "game/views/main_menu.hpp"
-#include "game/utils/defines.hpp"
-#include "graphics/window.hpp"
-
-#include <functional>
+// Pazaak
+#include "pazaak/game.hpp"
 
 _INITIALIZE_EASYLOGGINGPP
 
@@ -24,14 +22,10 @@ int main(int argc, char** argv)
   font::FontManager::init( config::ConfigurationManager::fontDirectory() );
   texture::TextureManager::init( config::ConfigurationManager::imageDirectory() );
 
-  // Main menu view
-  auto view_main_menu = std::make_shared<game::views::MainMenu>();
-
-  // Window
-  graphics::Window window {window::WIDTH, window::HEIGHT, "JEngine"};
-  window.setCurrentView( view_main_menu );
-  window.setViewSwitching( view_main_menu, game::ViewEvent::CLOSE, std::bind(&graphics::Window::close, &window) );
-  window.run();
+  // Run main application loop
+  auto pazaak = std::make_shared<pazaak::Game>();
+  pazaak->create();
+  pazaak->run();
 
   return EXIT_SUCCESS;
 }
